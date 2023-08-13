@@ -1,14 +1,4 @@
-"""
-6.101 Spring '23 Lab 2: Image Processing 2
-"""
-
-#!/usr/bin/env python3
-
-# NO ADDITIONAL IMPORTS!
-# (except in the last part of the lab; see the lab writeup for details)
-#import math
 from PIL import Image
-
 
 # VARIOUS FILTERS
 def get_red_img(color_image):
@@ -133,7 +123,6 @@ def filter_cascade(filters):
 
 # Main Seam Carving Implementation
 
-
 def seam_carving(image, ncols):
     """
     Starting from the given image, use the seam carving technique to remove
@@ -162,8 +151,6 @@ def custom_feature(image):
 
 
 # Optional Helper Functions for Seam Carving
-
-
 def greyscale_image_from_color_image(image):
     """
     Given a color image, computes and returns a corresponding greyscale image.
@@ -181,8 +168,8 @@ def greyscale_image_from_color_image(image):
 
 def compute_energy(grey):
     """
-    Given a greyscale image, computes a measure of "energy", in our case using
-    the edges function from last week.
+    Given a greyscale image, computes a measure of "energy", using
+    the edges function from image_processing.
 
     Returns a greyscale image (represented as a dictionary).
     """
@@ -192,8 +179,7 @@ def compute_energy(grey):
 def cumulative_energy_map(energy):
     """
     Given a measure of energy (e.g., the output of the compute_energy
-    function), computes a "cumulative energy map" as described in the lab 2
-    writeup.
+    function), computes a "cumulative energy map".
 
     Returns a dictionary with 'height', 'width', and 'pixels' keys (but where
     the values in the 'pixels' array may not necessarily be in the range [0,
@@ -244,7 +230,7 @@ def minimum_energy_seam(cem):
     """
     Given a cumulative energy map, returns a list of the indices into the
     'pixels' list that correspond to pixels contained in the minimum-energy
-    seam (computed as described in the lab 2 writeup).
+    seam.
     """
 
     height = cem["height"]
@@ -615,8 +601,6 @@ def edges(image):
 
 
 # HELPER FUNCTIONS FOR LOADING AND SAVING COLOR IMAGES
-
-
 def load_color_image(filename):
     """
     Loads a color image from the given file and returns a dictionary
@@ -692,10 +676,8 @@ def save_greyscale_image(image, filename, mode="PNG"):
 
 
 if __name__ == "__main__":
-    # code in this block will only be run when you explicitly run your script,
-    # and not when the tests are being run.  this is a good place for
-    # generating images, etc.
-    #inv_cat = inverted(load_greyscale_image('test_images/cat.png'))
+    #example usage
+    # inv_cat = inverted(load_greyscale_image('test_images/cat.png'))
     # color_inverted = color_filter_from_greyscale_filter(inverted)
     # inv_color_cat = color_inverted(load_color_image("test_images/cat.png"))
     # save_color_image(inv_color_cat, "test_images/color_cat.png")
