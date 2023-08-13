@@ -1,15 +1,4 @@
-"""
-6.1010 Spring '23 Lab 1: Image Processing
-"""
-
-#!/usr/bin/env python3
-
-#import math
-
 from PIL import Image
-
-# NO ADDITIONAL IMPORTS ALLOWED!
-
 
 def get_pixel(image, row, col):
     """
@@ -31,11 +20,6 @@ def get_pixel(image, row, col):
     """
     index = row*image["width"] + col
     return image["pixels"][index]
-
-
-# def set_pixel(image, index, color):
-#     image["pixels"][index] = color
-
 
 def apply_per_pixel(image, func):
     """
@@ -191,9 +175,6 @@ def correlate(image, kernel, boundary_behavior):
                 for new_col in range(col-extend_side, col+extend_side+1):
                     color = get_pixel_w_edge(image, new_row, new_col, edge_str)
                     nearby_pixels["values"].append(color)
-                # start_i = new_row*image["width"] + col - extend_sideways
-                # end_i = new_row*image["width"] + col + extend_sideways
-                # nearby_pixels["values"].extend(image["pixels"][start_i:end_i+1])
 
             #find linear combination
             result = 0
@@ -229,7 +210,7 @@ def round_and_clip_image(image):
 # FILTERS
 def create_kernel(side_length):
     """
-    Creates and returns a nxn kernel with values that add u to 1,
+    Creates and returns a nxn kernel with values that add up to 1,
     where n is equal to the side_length input. A dictionary representation
     of the kernel is returned with keys: width, height, and values of the
     kernel
@@ -248,16 +229,9 @@ def blurred(image, kernel_size):
     This process should not mutate the input image; rather, it should create a
     separate structure to represent the output.
     """
-    # first, create a representation for the appropriate n-by-n kernel (you may
-    # wish to define another helper function for this)
     kernel = create_kernel(kernel_size)
     blurred_image = correlate(image, kernel, "extend")
     return round_and_clip_image(blurred_image)
-
-    # then compute the correlation of the input image with that kernel
-
-    # and, finally, make sure that the output is a valid image (using the
-    # helper function from above) before returning it.
 
 def sharpened(image, n):
     """
@@ -353,11 +327,8 @@ def save_greyscale_image(image, filename, mode="PNG"):
         out.save(filename, mode)
     out.close()
 
-
 if __name__ == "__main__":
-    # code in this block will only be run when you explicitly run your script,
-    # and not when the tests are being run.  this is a good place for
-    # generating images, etc.
+    # example usages:
     # blue_gill = load_greyscale_image("test_images/bluegill.png")
     # blue_gill_inv = inverted(blue_gill)
     # save_greyscale_image(blue_gill_inv, "test_images/blue_gill_inv.png")
@@ -377,7 +348,6 @@ if __name__ == "__main__":
     #           0,0,0,0,0,0,0,0,0,0,0,0,0,
     #           0,0,0,0,0,0,0,0,0,0,0,0,0]}
     # pigbird_cor = correlate(pigbird, kernel, "wrap")
-    # print (type(pigbird_cor))
     # save_greyscale_image(pigbird_cor, "test_images/pigbird_wrap.png")
     # cat = load_greyscale_image("test_images/cat.png")
     # cat_blurred = blurred(cat, 13)
